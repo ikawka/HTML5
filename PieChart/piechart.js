@@ -36,6 +36,7 @@ function PieChart(id, o) {
     	];
 
 	this.canvas = document.getElementById(id);
+	this.total = 0;
 }
 
 PieChart.prototype = {
@@ -49,6 +50,10 @@ PieChart.prototype = {
 	draw: function() {
 		var self = this;
 		var context = this.canvas.getContext("2d");
+		for (var t = 0; t < this.data.length; t++){
+            		this.total += this.data[t];
+        	}
+		
 		for (var i = 0; i < this.data.length; i++) {
 			this.drawSegment(this.canvas, context, i, this.data[i], false, this.includeLabels);
 		}
@@ -125,7 +130,7 @@ PieChart.prototype = {
 
 	// helper functions
 	degreesToRadians: function(degrees) {
-		return (degrees * Math.PI)/180;
+		return (Math.PI*2*(degrees/this.total));
 	},
 
 	sumTo: function(a, i) {
