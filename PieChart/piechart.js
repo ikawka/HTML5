@@ -36,6 +36,7 @@ function PieChart(id, o) {
     	];
 
 	this.canvas = document.getElementById(id);
+	//fix for pies that only has 2 data items
 	this.total = 0;
 }
 
@@ -130,6 +131,7 @@ PieChart.prototype = {
 
 	// helper functions
 	degreesToRadians: function(degrees) {
+		//fix for pies that only has 2 data items
 		return (Math.PI*2*(degrees/this.total));
 	},
 
